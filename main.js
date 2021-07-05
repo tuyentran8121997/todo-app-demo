@@ -21,7 +21,7 @@ start();
 function addTodo(item) {
     const itemName = todoInput.value.trim();
     const checkNameExist = todoItems.some(i => i.name.includes(itemName));
-    let currentItemIndex = $("#current-item").value;
+    const currentItem = $("#current-item").value;
     // if item is not empty
     if(itemName.length === 0) {
         toast({
@@ -39,10 +39,10 @@ function addTodo(item) {
             duration: 5000
         });
     // update
-    }else if(currentItemIndex) {
-        updateItem(currentItemIndex, itemName);
-        todoInput.value = '';
-        currentItemIndex = "";
+    }else if(currentItem) {
+        updateItem(currentItem, itemName);
+        todoInput.value = "";
+        $("#current-item").value = "";
         toast({
             title: "Congratulation!",
             message: "The task name has been updated.",
@@ -61,7 +61,7 @@ function addTodo(item) {
         setLocalStorage(todoItems);
   
         // clear the input box value
-        todoInput.value = '';
+        todoInput.value = "";
     }
 }
 
@@ -143,6 +143,7 @@ function updateItem(itemIndex, newValue) {
     newItem.name = newValue;
     todoItems.splice(itemIndex, 1, newItem);
     setLocalStorage(todoItems);
+    todoInput.value = "";
 }
 
 // get local storage from the page

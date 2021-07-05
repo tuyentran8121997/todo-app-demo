@@ -30,7 +30,7 @@
 #toast {
     position: fixed;
     top: 32px;
-    right: 32px;
+    left: 32px;
     z-index: 999999;
   }
   
@@ -50,7 +50,7 @@
   @keyframes slideInLeft {
     from {
       opacity: 0;
-      transform: translateX(calc(100% + 32px));
+      transform: translateX(-100%);
     }
     to {
       opacity: 1;
